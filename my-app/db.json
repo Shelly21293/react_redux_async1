@@ -1,14 +1,14 @@
 {
   "products": [
     {
-      "desc": "milk ",
-      "price": "88",
-      "id": 4
+      "desc": "stuhim",
+      "price": "34",
+      "id": 7
     },
     {
-      "desc": "yogurt",
-      "price": "556",
-      "id": 5
+      "desc": "milk",
+      "price": "55",
+      "id": 8
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchData,addData,delData } from './shopAPI';
+import { getData,addData,delData, updData } from './shopAPI';
 
 const initialState = {
   cart:[],
@@ -8,22 +8,32 @@ const initialState = {
 };
 
 // Async methodes
-export const getDataAsync = createAsyncThunk('shop/fetchData',async (amount) => {
-    const response = await fetchData(amount);
+export const getDataAsync = createAsyncThunk('shop/fetchData',async () => {
+    const response = await getData();
+    // console.log(response.data);
     return response.data;
   }
 );
 
-export const addDataAsync = createAsyncThunk('shop/addData',async (newProd) => {
-    const response = await addData(newProd);
-    return response;
+export const addDataAsync = createAsyncThunk('shop/addData',async (newData) => {
+    const response = await addData(newData);
+    // console.log(response.data);
+    return response.data;
   }
 );
 
 export const delDataAsync = createAsyncThunk('shop/delData',async (id) => {
     const response = await delData(id);
-    return response;
+    // console.log(response)
+    return id;
   }
+);
+
+export const updDataAsync = createAsyncThunk('shop/updData',async (newData) => {
+  const response = await updData(newData, newData.id);
+  // console.log(response.data);
+  return response.data;
+}
 );
 
 
@@ -36,23 +46,28 @@ export const shopSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      // .addCase(getDataAsync.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      .addCase(getDataAsync.pending, (state) => {
-        state.status = "loading";
-      })
+      
       .addCase(getDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
+        // console.log(action.payload);
         state.cart =action.payload;
       },)
       .addCase(addDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
+        // console.log(action.payload);
         state.cart =[...state.cart,action.payload];
       },)
       .addCase(delDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
+        // console.log(action.payload);
         state.cart = state.cart.filter((x) => x.id !== action.payload);
+      },)
+      .addCase(updDataAsync.fulfilled, (state, action) => {
+        state.status = 'Done';
+        // console.log(action.payload);
+        let updProd = state.cart.find((x) => x.id === action.payload.id);
+        updProd.desc = action.payload.desc;
+        updProd.price = action.payload.price;
       },);
   },
 });

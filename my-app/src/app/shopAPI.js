@@ -2,28 +2,32 @@
 import axios from "axios";
 
 
-const url="http://localhost:3000/products/"
+const SERVER_URL="http://localhost:3005/products/"
 
 
 
-export function fetchData() {
+export function getData() {
   return new Promise((resolve) =>
-  axios(url).then((res) => resolve({ data: res.data }))
-    
+  axios(SERVER_URL).then((res) => resolve({ data: res.data })),
   );
 }
 
-
-export const addData = (newProd) => {
-  console.log(newProd);
+export const addData = (newData) => {
+  // console.log(newData);
   return new Promise((resolve) =>
-    axios.post(url, newProd).then((res) => resolve(newProd))
+    axios.post(SERVER_URL, newData).then((res) => resolve({ data: res.data }))
   );
 };
 
 export const delData = (id) => {
-  console.log(id);
+  // console.log(id);
   return new Promise((resolve) =>
-    axios.delete(url+ id).then((res) => resolve(id))
+    axios.delete(SERVER_URL+ id).then((res) => resolve({ data: res.data }))
   );
 };
+
+export function updData(newData,id) {
+  return new Promise((resolve) =>
+    axios.put(SERVER_URL +id, newData).then((res) => resolve({ data: res.data }))
+  );
+}

@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {getDataAsync,addDataAsync,delDataAsync,selectCart,} from './shopSlice';
+import {getDataAsync,addDataAsync,delDataAsync,selectCart,updDataAsync} from './shopSlice';
 // import styles from './Counter.module.css';
 
 export function Shop() {
@@ -34,6 +34,11 @@ export function Shop() {
         <div>
           Desc: {prod.desc} {", "} Price: {prod.price}
           <button onClick={() => dispatch(delDataAsync(prod.id))}>Delete</button>
+          <button onClick={() => dispatch(updDataAsync({
+                  desc: desc,
+                  price: price,
+                  id: prod.id,
+                }))}>Update</button>
         </div>
       ))}
     </div>
