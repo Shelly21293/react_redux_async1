@@ -1,7 +1,10 @@
 import React from 'react';
-import { Shop } from './app/Shop';
 import './App.css';
-import { Shop2 } from './app/Shop2';
+import { Shop } from './app/Shop';
+import {Customer} from './app/Customer';
+import {Cart} from './app/Cart'
+
+
 
 function App() {
   return (
@@ -9,7 +12,10 @@ function App() {
       <header className="App-header">
         <Shop />
         <hr />
-        <Shop2 />
+        <Customer />
+        <hr />
+        {/* GUI only- all methods from customer */}
+        <Cart />
       </header>
     </div>
   );

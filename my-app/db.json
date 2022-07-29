@@ -1,14 +1,15 @@
 {
   "products": [
     {
-      "desc": "stuhim",
-      "price": "34",
-      "id": 7
-    },
-    {
       "desc": "milk",
       "price": "55",
-      "id": 8
+      "id": 1
+    },
+    {
+      "desc": "lechem",
+      "price": "65",
+      "id": 3
     }
-  ]
+  ],
+  "customerCart": []
 }

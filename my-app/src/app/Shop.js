@@ -1,10 +1,10 @@
 import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {getDataAsync,addDataAsync,delDataAsync,selectCart,updDataAsync} from './shopSlice';
+import {getDataAsync,addDataAsync,delDataAsync,selectProdList,updDataAsync} from './shopSlice';
 // import styles from './Counter.module.css';
 
 export function Shop() {
-  const cart = useSelector(selectCart);
+  const prodList = useSelector(selectProdList);
   const dispatch = useDispatch();
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
@@ -16,6 +16,7 @@ export function Shop() {
 
   return (
     <div>
+      Admin GUI
       <div>
           Desc:
           <input onChange={(e) => setDesc(e.target.value)} />
@@ -28,12 +29,15 @@ export function Shop() {
             Add Product
           </button>
         </div>
-        {cart.length} - number of products in cart
+        {prodList.length} - number of products in shop
 
-      {cart.map((prod) => (
+      {prodList.map((prod) => (
         <div>
           Desc: {prod.desc} {", "} Price: {prod.price}
-          <button onClick={() => dispatch(delDataAsync(prod.id))}>Delete</button>
+          <button onClick={() => dispatch(delDataAsync(prod.id))}>
+            Delete
+            </button>
+
           <button onClick={() => dispatch(updDataAsync({
                   desc: desc,
                   price: price,

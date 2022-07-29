@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getData,addData,delData, updData } from './shopAPI';
 
 const initialState = {
-  cart:[],
+  prodList:[],
   value: 0,
   status: 'idle',
 };
@@ -50,22 +50,22 @@ export const shopSlice = createSlice({
       .addCase(getDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
         // console.log(action.payload);
-        state.cart =action.payload;
+        state.prodList =action.payload;
       },)
       .addCase(addDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
         // console.log(action.payload);
-        state.cart =[...state.cart,action.payload];
+        state.prodList =[...state.prodList,action.payload];
       },)
       .addCase(delDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
         // console.log(action.payload);
-        state.cart = state.cart.filter((x) => x.id !== action.payload);
+        state.prodList = state.prodList.filter((x) => x.id !== action.payload);
       },)
       .addCase(updDataAsync.fulfilled, (state, action) => {
         state.status = 'Done';
         // console.log(action.payload);
-        let updProd = state.cart.find((x) => x.id === action.payload.id);
+        let updProd = state.prodList.find((x) => x.id === action.payload.id);
         updProd.desc = action.payload.desc;
         updProd.price = action.payload.price;
       },);
@@ -77,6 +77,6 @@ export const shopSlice = createSlice({
 
 
 // selctors to export
-export const selectCart = (state) => state.shop.cart;
+export const selectProdList = (state) => state.shop.prodList;
 
 export default shopSlice.reducer;
