@@ -8,7 +8,7 @@ const initialState = {
 };
 
 // Async methodes
-export const getDataAsync = createAsyncThunk('customer/fetchData',async () => {
+export const getDataAsync = createAsyncThunk('customer/getData',async () => {
     const response = await getData();
     // console.log(response.data);
     return response.data;

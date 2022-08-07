@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {  selectCustomerProdList,getDataAsync,delDataAsync } from './customerSlice';
-// import {getDataAsync,delDataAsync} from './cartSlice';
-// import {  selectCartList } from './cartSlice';
+import { selectCustomerProdList, getDataAsync, delDataAsync } from './customerSlice';
+import { addDataAsync, selectCartList } from './cartSlice';
 
-// import styles from './Counter.module.css';
+
 
 export function Cart() {
   const prodList = useSelector(selectCustomerProdList);
@@ -14,12 +13,12 @@ export function Cart() {
 
   useEffect(() => {
     dispatch(getDataAsync());
-  },[]);
+  }, []);
 
 
   return (
     <div>
-      Cart GUI
+      <h1>Cart GUI</h1>
 
       {prodList.map((prod) => (
         <div>
@@ -31,6 +30,9 @@ export function Cart() {
         </div>
       ))}
 
+      <button >
+        <h2 onClick={() => dispatch(addDataAsync(prodList))}>Check out</h2>
+      </button>
     </div>
   );
 }

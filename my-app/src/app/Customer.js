@@ -19,7 +19,7 @@ export function Customer() {
 
   return (
     <div>
-      Customer GUI
+      <h1>Customer GUI</h1>
 
       {prodList.map((prod) => (
         <div>
